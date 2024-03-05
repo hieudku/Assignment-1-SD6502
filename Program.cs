@@ -13,6 +13,7 @@ namespace Assignment_1_SD6502
             char userContinue;
             char userSelect;
             Library lib = new Library();
+            
 
 
             do
@@ -29,7 +30,9 @@ namespace Assignment_1_SD6502
                 if (userSelect == '1')
                 {
                     Console.WriteLine("lists of contents by categories:");
-                    lib.DisplayCategory();
+                    Category category = new Category();
+                    category.DisplayCategory();
+                    lib.DisplayContents();
                 }
                 else if (userSelect == '4')
                 {
@@ -47,10 +50,11 @@ namespace Assignment_1_SD6502
 
         }
     }
+
     class Library
     {
-        List<string> itemCategory = new List<string> {"Books", "Articles", "Digital", "Journal" };
-        List<string> itemName = new List<string>();
+        
+        List<string> contentList = new List<string>();
         bool avalability;
 
 
@@ -60,28 +64,51 @@ namespace Assignment_1_SD6502
         }
 
         public bool Avalability { get => avalability; set => avalability = value; }
-        public List<string> ItemCategory { get => itemCategory; set => itemCategory = value; }
-        public List<string> ItemName { get => itemName; set => itemName = value; }
-
         public void DisplayCategory()
         {
-            int num = 1;
-            foreach (string category in itemCategory)
+
+            var categories = Category.GetCategories();
+            foreach (var category in categories)
             {
-                Console.WriteLine($"{num}. { category}");
+                Console.WriteLine($"***{ category.Name}");
+            }
+        }
+
+    public void DisplayContents()
+        {
+            int num = 1;
+            foreach (string item in contentList)
+            {
+                Console.WriteLine($". {item}");
                 num++;
             }
         }
         public void AddItem(string itemName)
         {
-            itemCategory.Add(itemName);
+            contentList.Add(itemName);
 
         }
     }
-
-    class Renewal : Library
+    class Category : Library
     {
-        
+        public string Name { get; set; }
+        private static List<Category> categoryList = new List<Category>();
+
+        static Category()
+        {
+            categoryList.Add(new Category { Name = "Books" });
+            categoryList.Add(new Category { Name = "Articles" });
+            categoryList.Add(new Category { Name = "Journal" });
+            categoryList.Add(new Category { Name = "Digital Media" });
+        }
+        public static List<Category> GetCategories()
+        {
+            return categoryList;
+        }
+    }
+    class Content : Category
+    {
+        List<string> contentList = new List<string>();
     }
 
     class Staffs
