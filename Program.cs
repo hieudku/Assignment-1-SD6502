@@ -12,12 +12,16 @@ namespace Assignment_1_SD6502
         {
             char userContinue;
             char userSelect;
+            char staffOrStudent;
+
             Library lib = new Library();
             
 
 
             do
             {
+                Console.WriteLine("Are you a staff or student? (1/2)");
+                staffOrStudent = Convert.ToChar(Console.ReadLine());
                 Console.WriteLine("Welcome to the online library. Select:");
                 Console.WriteLine("1. Display lists of contents by categories");
                 Console.WriteLine("2. Borrow items");
