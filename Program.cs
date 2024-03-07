@@ -12,16 +12,39 @@ namespace Assignment_1_SD6502
         {
             char userContinue;
             char userSelect;
-            char staffOrStudent;
-
+            string staffOrStudent;
+            string userName;
             Library lib = new Library();
             
 
 
             do
             {
-                Console.WriteLine("Are you a staff or student? (1/2)");
-                staffOrStudent = Convert.ToChar(Console.ReadLine());
+                do
+                {
+                    Console.WriteLine("Are you a staff or student? (1/2)");
+                    staffOrStudent = Convert.ToString(Console.ReadLine());
+
+                    if (staffOrStudent == "1")
+                    {
+                        Staffs staff = new Staffs();
+                        break;
+                    }
+                    else if (staffOrStudent == "2")
+                    {
+                        Students student = new Students(userName);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter a valid selection (1/2)");
+                    }
+                } while (staffOrStudent != "1" || staffOrStudent != "2" || staffOrStudent == "");
+
+
+                Console.WriteLine("Please enter your name: ");
+                userName = Console.ReadLine();
+
                 Console.WriteLine("Welcome to the online library. Select:");
                 Console.WriteLine("1. Display lists of contents by categories");
                 Console.WriteLine("2. Borrow items");
@@ -118,6 +141,13 @@ namespace Assignment_1_SD6502
     class Staffs
     {
         string staffName;
+        public Staffs(string staffName)
+        {
+            this.StaffName = staffName;
+        }
+        
+public string StaffName { get => staffName; set => staffName = value; }
+    }
     }
 
     class Students
@@ -125,3 +155,4 @@ namespace Assignment_1_SD6502
         string studentName;
     }
 }
+
