@@ -26,7 +26,7 @@ namespace Assignment_1_SD6502
         {
             Borrowed = true;
             Borrower = borrower;
-            DueDate = DateTime.Now.AddDays(borrower is Staff ? 365 : 90); // Staff can keep for a calendar year, students for 90 days
+            DueDate = DateTime.Now.AddDays(borrower is Staff ? 365 : 90); // Staff can keep for a calendar year, students for 90 days (one trimester)
         }
 
         public void CheckIn()
