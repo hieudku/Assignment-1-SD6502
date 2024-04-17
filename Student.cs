@@ -8,7 +8,7 @@ namespace Assignment_1_SD6502
 {
     class Student : Borrower
     {
-        public override int MaxBorrowings { get { return 5; } }
-        public override int MaxRenewals { get { return 1; } }
+        public override int MaxBorrowings => 5;
+        public override int MaxRenewals => 1;
     }
 }
